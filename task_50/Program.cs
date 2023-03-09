@@ -26,15 +26,15 @@ int[,] GetMatrix(int rows, int cols)
     }
     return matrix;
 }
-void PrintMatrix(int[,] matr)
+void PrintIndex(int[,] matr)
 {
     Console.Write("Введите строку:");
-    int line = Convert.ToInt32(Console.ReadLine());
+    int line = Convert.ToInt32(Console.ReadLine()) - 1;
     Console.Write("Введите столбец:");
-    int col = Convert.ToInt32(Console.ReadLine());
+    int col = Convert.ToInt32(Console.ReadLine()) - 1;
 
 
-    if ((line - 1) < 0 || line >= matr.Length || (col - 1) < 0 || col >= matr.Length)
+    if (line < 0 || line > matr.GetLength(0) - 1 || col < 0 || col > matr.GetLength(1) - 1)
     {
 
         Console.WriteLine("Элемент с данными индексами   в данном массиве отсутствует");
@@ -45,6 +45,17 @@ void PrintMatrix(int[,] matr)
     }
 
 }
+void PrintMatrix(int[,] matr)
+{
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int m = 0; m < matr.GetLength(1); m++)
+        {
+            Console.Write(matr[i, m] + "\t");
+        }
+        Console.WriteLine();
+    }
+}
 
-int[,] resultMatrix = GetMatrix(5, 5);
-PrintMatrix(resultMatrix);
+PrintMatrix(GetMatrix(5, 5));
+PrintIndex(GetMatrix(5, 5));
